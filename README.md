@@ -18,6 +18,7 @@ plugins/                 # Plugin library — one .py file per command
     smene.py             # Employee schedule (next 7 days)
     skamere.py           # IP camera live snapshot
     radijacija.py        # Radiation sensor readout
+    dust.py              # Air quality visualization from MRTG
     ups.py               # UPS status
     jelovnik.py          # Canteen menu
     racun.py             # Account/billing info
