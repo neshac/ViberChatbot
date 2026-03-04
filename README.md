@@ -120,9 +120,9 @@ curl -X POST https://yourserver:8080/send \
   -d '{"password":"your_password","recipients":["NESHA"],"text":"Disk usage at 95%"}'
 ```
 
-## Alertmanager / Prometheus Webhook
+## Generic Webhook → Viber Notification Bridge
 
-The bot includes an endpoint that accepts Alertmanager webhook payloads and forwards alerts to Viber:
+A lightweight webhook endpoint that receives generic HTTP POST alerts (e.g. Alertmanager/Prometheus, Grafana, Zabbix, and other monitoring systems) and forwards notifications to Viber.
 
 ```yaml
 # alertmanager.yml
@@ -160,4 +160,5 @@ Then symlink it into user directories as needed. The plugin name (minus `.py`) a
 
 ## Author
 
-Nebojsa Milovanovic — [nesha@nesha.net](mailto:nesha@nesha.net)
+Nebojsa Milovanovic
+
