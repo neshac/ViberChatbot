@@ -33,6 +33,8 @@ USER2='xxxxxxxxxxxxxxxxxxxxxx=='
 USER3='xxxxxxxxxxxxxxxxxxxxxx=='
 USER4='xxxxxxxxxxxxxxxxxxxxxx=='
 USER5='xxxxxxxxxxxxxxxxxxxxxx=='
+USER6='xxxxxxxxxxxxxxxxxxxxxx=='
+USER7='xxxxxxxxxxxxxxxxxxxxxx=='
 
 ADMINS=[NESHA]
 
@@ -56,8 +58,8 @@ logger.addHandler(handler)
 uzbunkoBot = Blueprint('uzbunkoBot', __name__)
 viber = Api(BotConfiguration(
     name='Uzbunko',
-    avatar='https://example.net/viber/avatar.png',
-    auth_token='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    avatar='https://internet.example.net/viber/avatar.png',
+    auth_token='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 ))
 
 
@@ -171,6 +173,34 @@ def send():
     else:
         return Response(status=403)
 
+
+@uzbunkoBot.route('/ALERTMpassword1234', methods=['POST'])
+def alertm():
+    #send viber text message with:
+    #requests.post("https://SERVER:PORT/send", json={"password":"password","recipients":["NESHA"],"text":"Sample text"})
+    req=request.get_json(force=True)
+    #sum=0
+    #status=req.get('status')
+    #sendtext='status: ' + status + '\n\n'
+    for i in req.get('alerts'):
+        if (i.get('status')):
+           sendtext = "Status: " + i.get('status') + '\n\n'
+        else:
+           sendtext = ''
+        if (i.get('labels')):
+           sendtext += 'Labels:\n'
+           sendtext += json.dumps(i.get('labels'), indent=4)
+           sendtext += '\n\n'
+        if (i.get('annotations')):
+           sendtext += 'Annotations:\n'
+           sendtext += json.dumps(i.get('annotations'), indent=4)
+        viber.send_messages(globals().get("NESHA"), [
+            TextMessage(text=sendtext)
+        ])
+    return Response(status=200)
+    #else:
+    #    return Response(status=403)
+
 #@uzbunkoBot.route('/images/image.jpg')
 #def image():
 #   return uzbunkoBot.send_static_file('/images/image.jpg')
@@ -179,6 +209,6 @@ def send():
 #set_webhook(viber)   
 #if __name__ == "__main__":
 #    context = ('server.crt', 'server.key')
-#    app.run(host='admin.b92.net', port=8080, debug=True, ssl_context=context)
+#    app.run(host='admin.example.net', port=8080, debug=True, ssl_context=context)
 #    #app.run(debug = True)
  
