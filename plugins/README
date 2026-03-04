@@ -1,0 +1,7 @@
+To give the user a privilege to specific plugin you must first create dir in users
+dir like:
+os.mkdir('users/u'+hashlib.md5(VIBER_ID.encode()).hexdigest())
+where VIBER_ID is user's viber id
+
+Then you enter that dir and create symbolic link to specific plugin:
+ln -s ../../plugins/plugin_example.py

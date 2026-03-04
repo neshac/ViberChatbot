@@ -1,0 +1,28 @@
+#!/bin/bash
+
+SOURCE=$1
+NAME=$2
+
+#echo >> /tmp/source
+#echo SOURCE $SOURCE >> /tmp/source
+#echo NAME $NAME >> /tmp/source
+#echo >> /tmp/source
+
+wget "$SOURCE" -O /tmp/image.jpg
+if [ $? -ne 0 ]; then
+ exit 11
+fi
+#neka proba za commit
+#cd /tmp
+#tar -czf zika.tar.gz image.jpg --transform 's!^image.jpg\($\|/\)!'$NAME'\1!'
+#/usr/bin/tcpclient -RHl0 -- 200.100.100.6 30000 sh -c "echo zika.tar.gz >&7; cat zika.tar.gz >&7"
+#/usr/bin/tcpclient -RHl0 -- 200.100.100.6 30000 sh -c "echo $NAME >&7; cat /tmp/image.jpg >&7"
+#/usr/bin/tcpclient -RHl0 -- 200.100.100.6 30000 sh -c "echo $NAME >&7; tar -czf - /tmp/image.jpg >&7"
+rsync -avz --remove-source-files /tmp/image.jpg nobody@internet.example.net:/var/www/example.net/images/$NAME
+#scp /tmp/image.jpg nobody@internet.example.net:/var/www/example.net/images/$NAME
+if [ $? -ne 0 ]; then
+ exit 21
+fi
+#rm -f /tmp/image.jpg
+#rm -f /tmp/zika.tar.gz 
+exit 0
