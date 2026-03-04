@@ -16,14 +16,10 @@ plugins/                 # Plugin library — one .py file per command
     ping.py              # Ping a list of hosts, report UP/DOWN
     temp.py              # Query server room temperature sensor
     smene.py             # Employee schedule (next 7 days)
-    skamere.py           # Trigger IP camera stop/snapshot
-    garaza.py            # Garage / IoT control
-    b92.py               # Scrape internal data from b92.net
+    skamere.py           # IP camera live snapshot
     radijacija.py        # Radiation sensor readout
     ups.py               # UPS status
     jelovnik.py          # Canteen menu
-    prijavnica.py        # Visitor log
-    parking.py           # Parking status
     racun.py             # Account/billing info
     link.py              # Quick links
     ...                  # Add your own
